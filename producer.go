@@ -14,7 +14,7 @@ func failOnError(err error, message string) {
 }
 
 func main() {
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:15672")
+	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 	failOnError(err, "Failed to connect with RabbitMQ.")
 	defer conn.Close()
 
@@ -34,7 +34,7 @@ func main() {
 	failOnError(err, "Failed to declare a queue.")
 
 	// Set the payload
-	body := "Golang is awesome"
+	body := "Nice"
 	err = ch.Publish(
 		"",
 		queue.Name,
